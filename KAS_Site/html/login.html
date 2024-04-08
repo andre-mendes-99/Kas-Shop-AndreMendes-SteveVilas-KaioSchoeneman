@@ -1,12 +1,35 @@
 <!DOCTYPE html>
 <html lang="enpt">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="http://code.jquery.com/jquery-3.6.0.js"></script>
+
 </head>
+
 <body>
-    
+    <center>
+        <div class="caixalgn">
+            <center>
+                <br>
+                <h2>Login</h2>
+                
+                <label for="name">Username</label>
+                <input type="text" name="name" id="name" placeholder="Enter username...">
+                <p id="alertuser" style="display: hidden;">Preencha o username</p>
+                <br><br>
+                <label for="password">Password</label>
+                <input type="text" id="pass" placeholder="Enter password..." >
+                <p id="alertpass" style="display: hidden;">Preencha a password</p>
+                <br><br>
+                <input type="button" class="btnlogin" id="btnLogin" value="Login">
+               
+            </center>
+        </div>
+    </center>
 </body>
+<script src="/javascript/script_loginpage.js"></script>
 </html>
