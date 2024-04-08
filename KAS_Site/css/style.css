@@ -95,10 +95,12 @@ li.dropdown {
 
 .btnlogin
 {
+  margin-top: 20%;
   background-color: #367B92 ;
-  padding: 12px 28px;
+  padding: 12px 58px;
   font-size: 18px;
   border-radius: 15px;
+  border: 0;
   color: white;
 }
 
@@ -107,4 +109,10 @@ li.dropdown {
 background-color: black  !important;
 color: white;
 transition-duration: 1s;
+}
+
+.alert
+{
+  display: none;
+  margin-left: 5%;
 }
