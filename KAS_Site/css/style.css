@@ -1,12 +1,12 @@
 body {
   background-color: #367B92 !important;
   margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-.logo
-{
+.logo {
   border-radius: 70px;
-  width: 40%; 
+  width: 40%;
   height: 40%;
 }
 
@@ -97,14 +97,13 @@ li.dropdown {
   margin-top: 10%;
   background-color: #EB7131;
   width: 500px;
-  height: 400px;
+  height: 350px;
   border-radius: 10px;
 }
 
-.btnlogin
-{
-  margin-top: 20%;
-  background-color: #367B92 ;
+.btnlogin {
+  margin-top: 10%;
+  background-color: #367B92;
   padding: 12px 58px;
   font-size: 18px;
   border-radius: 15px;
@@ -112,15 +111,43 @@ li.dropdown {
   color: white;
 }
 
-.btnlogin:hover
-{
-background-color: black  !important;
-color: white;
-transition-duration: 1s;
+.btnlogin:hover {
+  background-color: black !important;
+  color: white;
+  transition-duration: 1s;
 }
 
-.alert
-{
+.alert {
   display: none;
-  margin-left: 5%;
+  color: #343247;
+  font-weight: bold;
+  margin-left: 8%;
+}
+
+.linktoregister {
+  color: #FFFFFF;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.linktoregister:hover {
+  text-decoration: underline;
+}
+
+
+input[type="text"],
+input[type="password"],
+input[type="button"] {
+  width: 40%;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 5px;
+  border: none;
+  box-sizing: border-box;
+}
+
+input[type="checkbox"] :checked
+{
+  border: none;
+  box-sizing: border-box;
 }

@@ -9,7 +9,6 @@ $(document).ready(function () {
     var pass = document.getElementById("pass").value;
 
     if (name == "") {
-      alertuser.css("color", "black");
       alertuser.css("display", "inline");
 
     }
@@ -17,7 +16,6 @@ $(document).ready(function () {
       alertuser.css("display", "none");
     }
     if (pass == "") {
-      alertpass.css("color", "black");
       alertpass.css("display", "inline");
     }
     else {
@@ -29,6 +27,7 @@ $(document).ready(function () {
     if ((name != "" && pass != "")) {
       window.location.replace("index.html");
       //ver sobre cookies depois
+      setCookie("login", true);
     }
 
   });

@@ -16,25 +16,36 @@
     <center>
         <div class="caixalgn">
             <center>
-                <br>
-                <h2>Login</h2>
-                
-                <label for="name">Username</label>
-                <input type="text" name="name" id="name" placeholder="Enter username...">
-                <br>
-                <p id="alertuser" class="alert">Preencha o username</p>
-                <br><br>
-                <label for="password">Password</label>
-                <input type="text" id="pass" placeholder="Enter password..." >
-                <br>
-                <p id="alertpass" class="alert">Preencha a password</p>
-                <br><br>
-                <input type="button" class="btnlogin" id="btnLogin" value="Login">
-               
+                <form>
+                    <br>
+                    <h2>Login</h2>
+                    <br>
+                    <label for="name">Username
+                        <input required type="text" name="name" id="name" placeholder="Enter username...">
+                    </label>
+                    <br>
+                    <p id="alertuser" class="alert">Preencha o username</p>
+                    <br><br>
+                    <label for="password">Password
+                        <input required type="password" id="pass" placeholder="Enter password...">
+                    </label>
+                    <br>
+                    <p id="alertpass" class="alert">Preencha a password</p>
+                    <br>
+                    <br>
+                    <label for="terms">Termos e condições
+                        <input required type="checkbox" name="terms" id="terms">
+                    </label>
+                    <br>
+                    <input type="button" class="btnlogin" id="btnLogin" value="Login">
+                    <br>
+                    <a href="" class="linktoregister">Não tem conta registe-se aqui</a>
+                </form>
             </center>
         </div>
     </center>
 </body>
 <script src="/javascript/script_loginpage.js"></script>
 <script src="/javascript/cookies.js"></script>
+
 </html>
