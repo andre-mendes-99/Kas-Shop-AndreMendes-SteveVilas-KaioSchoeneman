@@ -25,9 +25,10 @@ $(document).ready(function () {
    
    
     if ((name != "" && pass != "")) {
-      window.location.replace("index.html");
       //ver sobre cookies depois
       setCookie("login", true);
+      window.location.replace("index.html");
+      
     }
 
   });

@@ -7,102 +7,28 @@
 	<link rel="stylesheet" href="/css/style.css">
 	<link rel="icon" type="image/png" href="Kas_logo_icon.png">
 	<script src="http://code.jquery.com/jquery-3.6.0.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 	<title>estatistica_kas</title>
 </head>
 
 <body>
 	<section>
 		<ul>
-			<li id="paginaInicial"><a href="index.html">Página Inicial</a></li>
-			<li id="statsdeStats"><a href="estatistica.html">Estatítiscas de Estatísticas</a></li>
+			<li id="paginaInicial"><a href="index.html"><img src="KAS_logo_1.png" alt="logo" width="50px" height="50%"></a></li>
+			<li id="statsdeStats"><a href="estatistica.html">Estatítiscas de Mapas</a></li>
 			<li id="statsDeStocks"><a href="stocks.html">Estatítiscas de Stocks</a></li>
 			<li id="statsdeGraphs"><a href="grafica.html">Estatítiscas de Grafícos</a></li>
 			<li class="dropdown">
 				<a href="perfil.html" class="dropbtn">Perfil</a>
-				<div class="dropdown-content" id="login">
-					<a href="login.html">Login</a>
+				<div class="dropdown-content" >
+				  <a id="login" href="login.html">Login</a>
+				  <a id="exit">Logout</a>
 				</div>
-			</li>
+			  </li>
 			<li id="sobrenos"><a href="about.html">Sobre nós</a></li>
 		</ul>
 	</section>
-	<br>
-	<center>
-	<div style="background-color: white; width: fit-content; height: fit-content;">
-		<canvas id="myChart" style="width:100%;max-width:600px"></canvas>
-	</div>
-<br>
-	<div style="background-color: white; width: fit-content; height: fit-content;">
-		<canvas id="myChart2" style="width:100%;max-width:600px"></canvas>
-	</div>
-<br>
-	<div style="background-color: white; width: fit-content; height: fit-content;">
-		<canvas id="myChart3" style="width:100%;max-width:600px"></canvas>
-	</div>
-</center>
 
 </body>
 <script src="/javascript/scripts_allpages.js"></script>
 <script src="/javascript/cookies.js"></script>
-<script>
-	const xValues = ["Queijo", "Fiambre", "Bacon", "Chouriço", "Fiambre de Peru"];
-	const yValues = [55, 49, 44, 24, 15, 0];
-	const barColors = ["red", "green", "blue", "orange", "brown"];
-
-	new Chart("myChart", {
-		type: "bar",
-		data: {
-			labels: xValues,
-			datasets: [{
-				backgroundColor: barColors,
-				data: yValues
-			}]
-		},
-		options: {
-			legend: { display: false },
-			title: {
-				display: true,
-				text: "Vendas de frios 2089"
-			}
-		}
-	});
-
-	new Chart("myChart2", {
-  type: "pie",
-  data: {
-    labels: xValues,
-    datasets: [{
-      backgroundColor: barColors,
-      data: yValues
-    }]
-  },
-  options: {
-    title: {
-      display: true,
-      text: "Vendas de frios 2089"
-    }
-  }
-});
-
-
-new Chart("myChart3", {
-		type: "horizontalBar",
-		data: {
-			labels: xValues,
-			datasets: [{
-				backgroundColor: barColors,
-				data: yValues
-			}]
-		},
-		options: {
-			legend: { display: false },
-			title: {
-				display: true,
-				text: "Vendas de frios 2089"
-			}
-		}
-	});
-</script>
-
 </html>

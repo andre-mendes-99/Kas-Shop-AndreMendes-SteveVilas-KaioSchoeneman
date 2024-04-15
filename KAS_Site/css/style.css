@@ -75,11 +75,12 @@ li.dropdown {
 .dropdown-content a {
   color: white;
   width: fit-content;
-  padding: 10px 15px;
+  padding: 10px 9px;
   text-decoration: none;
   display: block;
   text-align: left;
 }
+
 
 .dropdown-content a:hover {
   width: fit-content;
@@ -146,8 +147,18 @@ input[type="button"] {
   box-sizing: border-box;
 }
 
-input[type="checkbox"] :checked
-{
+input[type="checkbox"] :checked {
   border: none;
   box-sizing: border-box;
 }
+
+.graficos {
+  background-color: white;
+  width: fit-content;
+  height: fit-content;
+}
+
+.menucontainer{
+  margin-top: 17px;
+}
+

@@ -32,3 +32,19 @@ function setCookie(cname, cvalue) {
       return false;
     }
   }
+
+  function eraseCookie(name) {
+    document.cookie = name + "=; Max-Age=-99999999;";
+
+  }
+
+  function eraseCookies() {
+    const cookies = document.cookie.split("; ");
+    for (const cookie of cookies) {
+        const [name] = cookie.split("=");
+        document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    }
+}
+
+
+

@@ -1,31 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="/css/style.css">
 	<link rel="icon" type="image/png" href="Kas_logo_icon.png">
-    <script src="http://code.jquery.com/jquery-3.6.0.js"></script>
+	<script src="http://code.jquery.com/jquery-3.6.0.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 
-    <title>stocks_kas</title>
+
+	<title>stocks_kas</title>
 </head>
+
 <body>
-    <section>
+	<section>
 		<ul>
-			<li id="paginaInicial"><a href="index.html">Página Inicial</a></li>
-			<li id="statsdeStats"><a href="estatistica.html">Estatítiscas de Estatísticas</a></li>
+			<li id="paginaInicial"><a href="index.html"><img src="KAS_logo_1.png" alt="logo" width="50px" height="50%"></a></li>
+			<li id="statsdeStats"><a href="estatistica.html">Estatítiscas de Mapas</a></li>
 			<li id="statsDeStocks"><a href="stocks.html">Estatítiscas de Stocks</a></li>
 			<li id="statsdeGraphs"><a href="grafica.html">Estatítiscas de Grafícos</a></li>
 			<li class="dropdown">
 				<a href="perfil.html" class="dropbtn">Perfil</a>
-				<div class="dropdown-content" id="login">
-				  <a href="login.html">Login</a>
+				<div class="dropdown-content" >
+				  <a id="login" href="login.html">Login</a>
+				  <a id="exit">Logout</a>
 				</div>
 			  </li>
 			<li id="sobrenos"><a href="about.html">Sobre nós</a></li>
 		</ul>
 	</section>
+	<br>
+	<center>
+		<div class="graficos">
+			<canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+		</div>
+	</center>
+
+	<script>
+		const xValues = [50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150];
+		const yValues = [7, 8, 8, 9, 9, 9, 10, 11, 14, 14, 15];
+
+		new Chart("myChart", {
+			type: "line",
+			data: {
+				labels: xValues,
+				datasets: [{
+					fill: false,
+					lineTension: 0,
+					backgroundColor: "rgba(0,0,255,1.0)",
+					borderColor: "rgba(0,0,255,0.1)",
+					data: yValues
+				}]
+			},
+			options: {
+				legend: { display: false },
+				scales: {
+					yAxes: [{ ticks: { min: 6, max: 16 } }],
+				}
+			}
+		});
+	</script>
 </body>
 <script src="/javascript/scripts_allpages.js"></script>
 <script src="/javascript/cookies.js"></script>
+
 </html>
