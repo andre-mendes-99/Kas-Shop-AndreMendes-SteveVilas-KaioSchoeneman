@@ -158,7 +158,12 @@ input[type="checkbox"] :checked {
   height: fit-content;
 }
 
-.menucontainer{
+.menucontainer {
   margin-top: 17px;
 }
 
+#map {
+  margin: 10%;
+  height: 300px;
+  width: 500px;
+}

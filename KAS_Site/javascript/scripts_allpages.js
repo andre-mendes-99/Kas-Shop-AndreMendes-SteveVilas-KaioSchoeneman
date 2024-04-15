@@ -9,13 +9,15 @@ $(document).ready(function () {
 
     if(checkCookieLogin())
     {
-        loginOpc.css("display", "none");
+        loginOpc.text("Perfil");
         sobrenos.css("display", "none");
         paginaInicial.css("display", "none");
 
     }
     else
     {
+        loginOpc.text("Login");~
+        loginOpc.attr("href", "login.html")
         statsdeStats.css("display", "none");
         statsdeGraphs.css("display", "none");
         statsDeStocks.css("display", "none");

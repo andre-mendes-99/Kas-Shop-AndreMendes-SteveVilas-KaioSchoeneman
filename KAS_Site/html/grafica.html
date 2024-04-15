@@ -14,21 +14,31 @@
 <body>
 	<section>
 		<ul>
-			<li id="paginaInicial"><a href="index.html"><img src="KAS_logo_1.png" alt="logo" width="50px" height="50%"></a></li>
-			<li id="statsdeStats"><a href="estatistica.html">Estatítiscas de Mapas</a></li>
-			<li id="statsDeStocks"><a href="stocks.html">Estatítiscas de Stocks</a></li>
-			<li id="statsdeGraphs"><a href="grafica.html">Estatítiscas de Grafícos</a></li>
+			<li id="paginaInicial"><a href="index.html"><img src="KAS_logo_1.png" alt="logo" width="50px"
+						height="50%"></a></li>
+			<li id="statsdeStats"><a href="estatistica.html">Mapas</a></li>
+			<li id="statsDeStocks"><a href="stocks.html">Stocks</a></li>
+			<li id="statsdeGraphs"><a href="grafica.html">Gráficos</a></li>
 			<li class="dropdown">
-				<a href="perfil.html" class="dropbtn">Perfil</a>
-				<div class="dropdown-content" >
-				  <a id="login" href="login.html">Login</a>
-				  <a id="exit">Logout</a>
+				<a id="login" href="perfil.html" class="dropbtn">Perfil</a>
+				<div class="dropdown-content">
+					<a id="exit">Logout</a>
 				</div>
-			  </li>
+			</li>
 			<li id="sobrenos"><a href="about.html">Sobre nós</a></li>
 		</ul>
 	</section>
 
+	<br>
+
+	<input type="number" id="queijo" placeholder="Insira o numero de vendas de queijo">
+	<input type="number" id="fiambre" placeholder="Insira o numero de vendas de queijo">
+	<input type="number" id="bacon" placeholder="Insira o numero de vendas de queijo">
+	<input type="number" id="chourico" placeholder="Insira o numero de vendas de queijo">
+	<input type="number" id="paio" placeholder="Insira o numero de vendas de queijo">
+
+	<button id="btnatualizarVendas">Atualizar</button>
+	<br>
 	<br>
 	<center>
 		<div class="graficos">
@@ -48,63 +58,130 @@
 <script src="/javascript/scripts_allpages.js"></script>
 <script src="/javascript/cookies.js"></script>
 <script>
-	const xValues = ["Queijo", "Fiambre", "Bacon", "Chouriço", "Fiambre de Peru"];
-	const yValues = [55, 49, 44, 24, 15, 0];
-	const barColors = ["red", "green", "blue", "orange", "brown"];
+	$('#btnatualizarVendas').click(function () {
+		var queijo = $('#queijo').val();
+		var fiambre = $('#fiambre').val();
+		var bacon = $('#bacon').val();
+		var chourico = $('#chourico').val();
+		var paio = $('#paio').val();
 
-	new Chart("myChart", {
-		type: "bar",
-		data: {
-			labels: xValues,
-			datasets: [{
-				backgroundColor: barColors,
-				data: yValues
-			}]
-		},
-		options: {
-			legend: { display: false },
-			title: {
-				display: true,
-				text: "Vendas de frios 2089"
+		const xValues = ["Queijo", "Fiambre", "Bacon", "Chouriço", "Paio"];
+		const yValues = [queijo, fiambre, bacon, chourico, paio, 0];
+		const barColors = ["red", "green", "blue", "orange", "brown"];
+
+		new Chart("myChart", {
+			type: "bar",
+			data: {
+				labels: xValues,
+				datasets: [{
+					backgroundColor: barColors,
+					data: yValues
+				}]
+			},
+			options: {
+				legend: { display: false },
+				title: {
+					display: true,
+					text: "Vendas de frios 2089"
+				}
 			}
-		}
+		});
+
+		new Chart("myChart2", {
+			type: "pie",
+			data: {
+				labels: xValues,
+				datasets: [{
+					backgroundColor: barColors,
+					data: yValues
+				}]
+			},
+			options: {
+				title: {
+					display: true,
+					text: "Vendas de frios 2089"
+				}
+			}
+		});
+
+
+		new Chart("myChart3", {
+			type: "horizontalBar",
+			data: {
+				labels: xValues,
+				datasets: [{
+					backgroundColor: barColors,
+					data: yValues
+				}]
+			},
+			options: {
+				legend: { display: false },
+				title: {
+					display: true,
+					text: "Vendas de frios 2089"
+				}
+			}
+		});
 	});
 
-	new Chart("myChart2", {
-		type: "pie",
-		data: {
-			labels: xValues,
-			datasets: [{
-				backgroundColor: barColors,
-				data: yValues
-			}]
-		},
-		options: {
-			title: {
-				display: true,
-				text: "Vendas de frios 2089"
+	const xValues = ["Queijo", "Fiambre", "Bacon", "Chouriço", "Paio"];
+		const yValues = [0, 0, 0, 0, 0, 0];
+		const barColors = ["red", "green", "blue", "orange", "brown"];
+
+		new Chart("myChart", {
+			type: "bar",
+			data: {
+				labels: xValues,
+				datasets: [{
+					backgroundColor: barColors,
+					data: yValues
+				}]
+			},
+			options: {
+				legend: { display: false },
+				title: {
+					display: true,
+					text: "Vendas de frios 2089"
+				}
 			}
-		}
-	});
+		});
+
+		new Chart("myChart2", {
+			type: "pie",
+			data: {
+				labels: xValues,
+				datasets: [{
+					backgroundColor: barColors,
+					data: yValues
+				}]
+			},
+			options: {
+				title: {
+					display: true,
+					text: "Vendas de frios 2089"
+				}
+			}
+		});
 
 
-	new Chart("myChart3", {
-		type: "horizontalBar",
-		data: {
-			labels: xValues,
-			datasets: [{
-				backgroundColor: barColors,
-				data: yValues
-			}]
-		},
-		options: {
-			legend: { display: false },
-			title: {
-				display: true,
-				text: "Vendas de frios 2089"
+		new Chart("myChart3", {
+			type: "horizontalBar",
+			data: {
+				labels: xValues,
+				datasets: [{
+					backgroundColor: barColors,
+					data: yValues
+				}]
+			},
+			options: {
+				legend: { display: false },
+				title: {
+					display: true,
+					text: "Vendas de frios 2089"
+				}
 			}
-		}
-	});
+		});
+
 </script>
 
 </html>
