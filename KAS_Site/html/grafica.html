@@ -31,11 +31,11 @@
 	<center><h1>Gráficos</h1></center>
 	<br>
 
-	<input type="number" id="queijo" placeholder="Insira o numero de vendas de queijo">
-	<input type="number" id="fiambre" placeholder="Insira o numero de vendas de queijo">
-	<input type="number" id="bacon" placeholder="Insira o numero de vendas de queijo">
-	<input type="number" id="chourico" placeholder="Insira o numero de vendas de queijo">
-	<input type="number" id="paio" placeholder="Insira o numero de vendas de queijo">
+	<input type="number" id="funko" placeholder="Insira o numero de vendas de funko">
+	<input type="number" id="gpu" placeholder="Insira o numero de vendas de GPU">
+	<input type="number" id="led" placeholder="Insira o numero de vendas de LED">
+	<input type="number" id="teclado" placeholder="Insira o numero de vendas de teclado">
+	<input type="number" id="rato" placeholder="Insira o numero de vendas de rato">
 
 	<button id="btnatualizarVendas">Atualizar</button>
 	<br>
@@ -59,14 +59,14 @@
 <script src="/javascript/cookies.js"></script>
 <script>
 	$('#btnatualizarVendas').click(function () {
-		var queijo = $('#queijo').val();
-		var fiambre = $('#fiambre').val();
-		var bacon = $('#bacon').val();
-		var chourico = $('#chourico').val();
-		var paio = $('#paio').val();
+		var funko = $('#funko').val();
+		var gpu = $('#gpu').val();
+		var led = $('#led').val();
+		var teclado = $('#teclado').val();
+		var rato = $('#rato').val();
 
-		const xValues = ["Queijo", "Fiambre", "Bacon", "Chouriço", "Paio"];
-		const yValues = [queijo, fiambre, bacon, chourico, paio, 0];
+		const xValues = ["Funko", "GPU", "Led", "Teclado", "Rato"];
+		const yValues = [funko, gpu, led, teclado, rato, 0];
 		const barColors = ["red", "green", "blue", "orange", "brown"];
 
 		new Chart("myChart", {
@@ -82,7 +82,7 @@
 				legend: { display: false },
 				title: {
 					display: true,
-					text: "Vendas de frios 2089"
+					text: "Vendas de artigos eletrônicos mensais"
 				}
 			}
 		});
@@ -99,7 +99,7 @@
 			options: {
 				title: {
 					display: true,
-					text: "Vendas de frios 2089"
+					text: "Vendas de artigos eletrônicos mensais"
 				}
 			}
 		});
@@ -118,13 +118,13 @@
 				legend: { display: false },
 				title: {
 					display: true,
-					text: "Vendas de frios 2089"
+					text: "Vendas de artigos eletrônicos mensais"
 				}
 			}
 		});
 	});
 
-	const xValues = ["Queijo", "Fiambre", "Bacon", "Chouriço", "Paio"];
+	const xValues = ["funko", "GPU", "Led", "Teclado", "Rato"];
 		const yValues = [0, 0, 0, 0, 0, 0];
 		const barColors = ["red", "green", "blue", "orange", "brown"];
 
@@ -141,7 +141,7 @@
 				legend: { display: false },
 				title: {
 					display: true,
-					text: "Vendas de frios 2089"
+					text: "Vendas de artigos eletrônicos mensais"
 				}
 			}
 		});
@@ -158,7 +158,7 @@
 			options: {
 				title: {
 					display: true,
-					text: "Vendas de frios 2089"
+					text: "Vendas de artigos eletrônicos mensais"
 				}
 			}
 		});
@@ -177,7 +177,7 @@
 				legend: { display: false },
 				title: {
 					display: true,
-					text: "Vendas de frios 2089"
+					text: "Vendas de artigos eletrônicos mensais"
 				}
 			}
 		});
