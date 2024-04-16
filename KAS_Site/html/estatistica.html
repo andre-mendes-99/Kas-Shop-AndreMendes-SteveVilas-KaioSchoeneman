@@ -8,61 +8,65 @@
 	<link rel="icon" type="image/png" href="Kas_logo_icon.png">
 	<script src="http://code.jquery.com/jquery-3.6.0.js"></script>
 	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-     crossorigin=""/>
-	
+		integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+
 	<title>estatistica_kas</title>
 </head>
 
 <body>
 	<section>
 		<ul>
-			<li id="paginaInicial"><a href="index.html"><img src="KAS_logo_1.png" alt="logo" width="50px" height="50%"></a></li>
+			<li id="paginaInicial"><a href="index.html"><img src="KAS_logo_1.png" alt="logo" width="50px"
+						height="50%"></a></li>
 			<li id="statsdeStats"><a href="estatistica.html">Mapas</a></li>
 			<li id="statsDeStocks"><a href="stocks.html">Stocks</a></li>
 			<li id="statsdeGraphs"><a href="grafica.html">Gráficos</a></li>
 			<li class="dropdown">
 				<a id="login" href="perfil.html" class="dropbtn">Perfil</a>
-				<div class="dropdown-content" >
+				<div class="dropdown-content">
 					<a id="exit">Logout</a>
-				  </div>
-			  </li>
+				</div>
+			</li>
 			<li id="sobrenos"><a href="about.html">Sobre nós</a></li>
 		</ul>
 	</section>
-	<center><div id="map"></div></center>
+	<center><h1>Mapa</h1></center>
+	<center>
+		<div id="map"></div>
+	</center>
 
 </body>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-crossorigin=""></script>
+	integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script src="/javascript/scripts_allpages.js"></script>
 <script src="/javascript/cookies.js"></script>
 <script>
 	var map = L.map('map').setView([38.707218, -9.152437], 15);
 
 	L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-}).addTo(map);
+		maxZoom: 19,
+		attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+	}).addTo(map);
 
 
-//adicionar um ponto
-var marker = L.marker([38.707218, -9.152437]).addTo(map);
+	//adicionar um ponto
+	var marker = L.marker([38.707218, -9.152437]).addTo(map);
 
-//adicionar um circulo
-var circle = L.circle([38.707218, -9.15243], {
-    color: 'orange',
-    fillColor: 'orange',
-    fillOpacity: 0.5,
-    radius: 500
-}).addTo(map);
+	//adicionar um circulo
+	var circle = L.circle([38.707218, -9.15243], {
+		color: 'orange',
+		fillColor: 'orange',
+		fillOpacity: 0.5,
+		radius: 500
+	}).addTo(map);
 
-//adicionar um poligono
-var polygon = L.polygon([
-    [51.509, -0.08],
-    [51.503, -0.06],
-    [51.51, -0.047]
-]).addTo(map);
+	//adicionar um poligono
+	var polygon = L.polygon([
+		[38.707218, -9.152437],
+		[38.707193, -9.152720],
+		[38.707880, -9.152758],
+		[38.708030, -9.152087]
+	]).addTo(map);
 </script>
+
 </html>

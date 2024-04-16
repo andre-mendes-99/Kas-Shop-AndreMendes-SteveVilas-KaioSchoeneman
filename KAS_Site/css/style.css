@@ -167,3 +167,21 @@ input[type="checkbox"] :checked {
   height: 300px;
   width: 500px;
 }
+
+.perfilContainer {
+  background-color: #EB7131;
+  margin: 2%;
+  border-radius: 10px;
+}
+
+.profilepiccontainer {
+  margin-top: 10px;
+  margin-left: 10px;
+  width: 30%;
+  height: 30%;
+}
+
+.infoUser {
+  display: inline;
+  
+}
