@@ -41,7 +41,7 @@
 <script src="/javascript/scripts_allpages.js"></script>
 <script src="/javascript/cookies.js"></script>
 <script>
-	var map = L.map('map').setView([38.707218, -9.152437], 15);
+	var map = L.map('map').setView([38.775172, -9.227671], 10);
 
 	L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 		maxZoom: 19,
@@ -53,11 +53,39 @@
 	var marker = L.marker([38.707218, -9.152437]).addTo(map);
 
 	//adicionar um circulo
-	var circle = L.circle([38.707218, -9.15243], {
+	var amadora = L.circle([38.756225, -9.225829], {
 		color: 'orange',
 		fillColor: 'orange',
 		fillOpacity: 0.5,
-		radius: 500
+		radius: 1500
+		}).addTo(map);
+
+	var circle2 = L.circle([38.794709, -9.185201], {
+		color: 'red',
+		fillColor: 'red',
+		fillOpacity: 0.5,
+		radius: 1500
+	}).addTo(map);
+
+	var circle3 = L.circle([38.799793, -9.377118], {
+		color: 'blue',
+		fillColor: 'blue',
+		fillOpacity: 0.5,
+		radius: 1500
+	}).addTo(map);
+
+	var circle4 = L.circle([38.693758, -9.419931], {
+		color: 'green',
+		fillColor: 'green',
+		fillOpacity: 0.5,
+		radius: 1500
+	}).addTo(map);
+
+	var circle5 = L.circle([38.702332, -9.282602], {
+		color: 'yellow',
+		fillColor: 'yellow',
+		fillOpacity: 0.5,
+		radius: 1500
 	}).addTo(map);
 
 	//adicionar um poligono
