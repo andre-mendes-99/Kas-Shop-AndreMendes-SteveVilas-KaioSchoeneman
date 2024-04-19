@@ -1,5 +1,5 @@
 body {
-  background-color: #367B92 !important;
+  background-color: #367B92;
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -113,7 +113,7 @@ li.dropdown {
 }
 
 .btnlogin:hover {
-  background-color: black !important;
+  background-color: black;
   color: white;
   transition-duration: 1s;
 }
@@ -172,16 +172,27 @@ input[type="checkbox"] :checked {
   background-color: #EB7131;
   margin: 2%;
   border-radius: 10px;
+  height: 500px;
 }
 
 .profilepiccontainer {
-  margin-top: 10px;
-  margin-left: 10px;
+  margin-top: 2%;
+  margin-left: 2%;
   width: 30%;
-  height: 30%;
+  height: 80%;
 }
 
 .infoUser {
+  border-radius: 10px;
+  width: 55%;
+  height: 45%;
   display: inline;
-  
+  position: fixed;  
+  margin-top: 5%;
+  margin-left: 100px;
+}
+
+.pUserInfo
+{
+  padding-left: 10px;
 }
