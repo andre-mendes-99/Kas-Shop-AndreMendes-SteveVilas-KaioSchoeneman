@@ -10,6 +10,7 @@ create table user(
                     user_name VARCHAR (60) not null,                         -- user name
                     user_email VARCHAR(30) not null,                         -- user email
                     user_logo longblob,                                      -- user logo
+                    user_password VARCHAR(69) not null,                      -- user password
                     primary key (user_id)
                     -- user = company
 );
