@@ -2,19 +2,14 @@
   "name": "kas_api",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
-  "type": "module",
-
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
-    "dev": "node --watch --no-warnings server.js"
-
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "fastify": "^4.26.2"
+    "express": "^4.19.2",
+    "mysql2": "^3.9.7"
   }
 }
