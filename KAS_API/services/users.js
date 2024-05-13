@@ -23,7 +23,7 @@ async function register(user){
       `INSERT INTO user 
       (user_name, user_password, user_email, user_logo)
       VALUES 
-      ('${user.name}', ${user.pass}, ${user.email}, null)`
+      ('${user.name}', '${user.pass}', '${user.email}', '${user.logo}')`
     );
   
     let message = 'Error in creating programming language';

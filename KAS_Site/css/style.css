@@ -102,6 +102,14 @@ li.dropdown {
   border-radius: 10px;
 }
 
+.caixaregister {
+  margin-top: 10%;
+  background-color: #EB7131;
+  width: 500px;
+  height: 450px;
+  border-radius: 10px;
+}
+
 .btnlogin {
   margin-top: 10%;
   background-color: #367B92;
@@ -142,6 +150,16 @@ input[type="button"] {
   width: 40%;
   padding: 10px;
   margin-top: 5px;
+  border-radius: 5px;
+  border: none;
+  box-sizing: border-box;
+}
+input[type="email"]
+{
+  width: 40%;
+  padding: 10px;
+  margin-top: 5px;
+  margin-left: 30px;
   border-radius: 5px;
   border: none;
   box-sizing: border-box;

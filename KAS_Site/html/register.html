@@ -4,9 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Register</title>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="icon" type="image/png" href="Kas_logo_icon.png">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
     <script src="http://code.jquery.com/jquery-3.6.0.js"></script>
 
@@ -14,11 +15,11 @@
 
 <body>
     <center>
-        <div class="caixalgn">
+        <div class="caixaregister">
             <center>
                 <form>
                     <br>
-                    <h2>Login</h2>
+                    <h2>Register</h2>
                     <br>
                     <label for="name">Username
                         <input required type="text" name="name" id="name" placeholder="Enter username...">
@@ -26,6 +27,14 @@
                     <br>
                     <p id="alertuser" class="alert">Preencha o username</p>
                     <br><br>
+
+                    <label for="email">Email
+                        <input required type="email" id="email" placeholder="Enter email...">
+                    </label>
+                    <br>
+                    <p id="alertemail" class="alert">Preencha o Email</p>
+                    <br><br>
+
                     <label for="password">Password
                         <input required type="password" id="pass" placeholder="Enter password...">
                     </label>
@@ -33,19 +42,19 @@
                     <p id="alertpass" class="alert">Preencha a password</p>
                     <br>
                     <br>
+
                     <label for="terms">Termos e condições
                         <input required type="checkbox" name="terms" id="terms">
                     </label>
                     <br>
-                    <input type="button" class="btnlogin" id="btnLogin" value="Login">
-                    <br>
-                    <a href="register.html" class="linktoregister">Não tem conta registe-se aqui</a>
+                    <input type="button" class="btnlogin" id="btnRegister" value="Criar Conta">
+   
                 </form>
             </center>
         </div>
     </center>
 </body>
-<script src="/javascript/script_loginpage.js"></script>
+<script src="/javascript/script_registerpage.js"></script>
 <script src="/javascript/cookies.js"></script>
 
 </html>
