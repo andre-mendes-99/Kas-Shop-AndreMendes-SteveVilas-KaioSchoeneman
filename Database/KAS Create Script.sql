@@ -1,68 +1,30 @@
--- user - id, name, email, logo
--- product - id, name, type, price(?)
--- product type - id, name
--- sales - id, amount
--- geo data - latitude, longitude
-
-
-create table user(
-                    user_id int not null auto_increment,
-                    user_name VARCHAR (60) not null,                         -- user name
-                    user_email VARCHAR(30) not null,                         -- user email
-                    user_logo longblob,                                      -- user logo
-                    user_password VARCHAR(60) not null,                      -- user password
-                    primary key (user_id)
-                    -- user = company
+create table app_users(
+                    user_id serial primary key,                              -- Primary key, auto incrementing
+                    user_name text,                                          -- User name, variable length
+                    user_email text unique not null,                         -- User email, it is unique and not null
+                    user_logo bytea,                                         -- User logo, binary data
+                    user_password varchar(60) not null,                     -- User password, fixed length
 );
 
 create table product(
-                        prod_id int not null auto_increment,
-                        prod_name VARCHAR (60) not null,            -- product name
-                        prod_type_id int not null,                  -- product type
-                        prod_price decimal (13,2) not null,
-                        primary key (prod_id)
+                        product_id serial primary key,                                       -- Primary key, auto incrementing
+                        product_name text,                                                   -- Product name, variable lenght
+                        product_type_id integer references productType(id),                  -- Product type
+                        product_price numeric(13,2) not null,                                -- Product value, fixed lenght
+                        product_sales_id integer references sales(id),
 );
 
--- create table sales(
---                     sales_id int not null auto_increment,
---                     sales_amount decimal (13,2) not null,
---                     primary key (sales_id)
--- );
-
-create table place(
-                        place_id int not null auto_increment,
-                        coordinate POINT SRID 4326 not null,
-                        primary key (place_id)
+CREATE TABLE sales(
+    sales_id serial primary key,                       -- Primary key, auto incrementing
+    sales_amount numeric(13,2) not null                -- Sales amount, fixed length
 );
 
-create table prodType(
-                        type_id int not null auto_increment,
-                        type_name VARCHAR (60) not null,
-                        primary key (type_id)
+CREATE TABLE geodata(
+    geodata_id serial primary key,                     -- Primary key, auto incrementing
+    geom geography(point, 4326) not null               -- Geometric data
 );
 
-create table delivery(
-                        deliv_id int not null auto_increment,
-                        deliv_prod_id int not null,
-                        deliv_place_id int not null,
-                        primary key(deliv_id)
+CREATE TABLE productType(
+    type_id serial primary key,                        -- Primary key, auto incrementing
+    type_name varchar(60) not null                     -- Product type name, variable length
 );
-
-create spatial index idx_coordinate ON place(coordinate);
-
--- Foreigns Keys 
-
-alter table product
-add constraint product_fk_prodType
-foreign key (prod_type_id) references prodType(type_id)
-ON DELETE NO ACTION ON UPDATE NO ACTION;
-
-alter table delivery
-add constraint delivery_fk_product
-foreign key (deliv_prod_id) references product(prod_id)
-ON DELETE CASCADE ON UPDATE NO ACTION;
-
-alter table delivery
-add constraint delivery_fk_location
-foreign key (deliv_place_id) references place(place_id)
-ON DELETE RESTRICT ON UPDATE NO ACTION;
