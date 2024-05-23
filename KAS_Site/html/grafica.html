@@ -8,14 +8,14 @@
 	<link rel="icon" type="image/png" href="Kas_logo_icon.png">
 	<script src="http://code.jquery.com/jquery-3.6.0.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
 	<title>grafica_kas</title>
 </head>
 
 <body>
 	<section>
 		<ul>
-			<li id="paginaInicial"><a href="index.html"><img src="KAS_logo_1.png" alt="logo" width="50px"
-						height="50%"></a></li>
+			<li id="paginaInicial"><a href="index.html"><img src="KAS_logo_1.png" alt="logo" width="50px" height="50%"></a></li>
 			<li id="statsdeStats"><a href="estatistica.html">Mapas</a></li>
 			<li id="statsDeStocks"><a href="stocks.html">Stocks</a></li>
 			<li id="statsdeGraphs"><a href="grafica.html">Gráficos</a></li>
@@ -28,7 +28,9 @@
 			<li id="sobrenos"><a href="about.html">Sobre nós</a></li>
 		</ul>
 	</section>
-	<center><h1>Gráficos</h1></center>
+	<center>
+		<h1>Gráficos</h1>
+	</center>
 	<br>
 
 	<input type="number" id="funko" placeholder="Insira o numero de vendas de funko">
@@ -38,6 +40,8 @@
 	<input type="number" id="rato" placeholder="Insira o numero de vendas de rato">
 
 	<button id="btnatualizarVendas">Atualizar</button>
+	<button id="export">Exportar</button>
+
 	<br>
 	<br>
 	<center>
@@ -58,15 +62,96 @@
 <script src="/javascript/scripts_allpages.js"></script>
 <script src="/javascript/cookies.js"></script>
 <script>
-	$('#btnatualizarVendas').click(function () {
-		var funko = $('#funko').val();
-		var gpu = $('#gpu').val();
-		var led = $('#led').val();
-		var teclado = $('#teclado').val();
-		var rato = $('#rato').val();
+	$(document).ready(function () {
+		let funko = 0;
+		let gpu = 0;
+		let led = 0;
+		let teclado = 0;
+		let rato = 0;
+
+		$('#btnatualizarVendas').click(function () {
+			funko = $('#funko').val();
+			gpu = $('#gpu').val();
+			led = $('#led').val();
+			teclado = $('#teclado').val();
+			rato = $('#rato').val();
+
+			const xValues = ["Funko", "GPU", "Led", "Teclado", "Rato"];
+			const yValues = [funko, gpu, led, teclado, rato];
+			const barColors = ["red", "green", "blue", "orange", "brown"];
+
+			new Chart("myChart", {
+				type: "bar",
+				data: {
+					labels: xValues,
+					datasets: [{
+						backgroundColor: barColors,
+						data: yValues
+					}]
+				},
+				options: {
+					legend: { display: false },
+					title: {
+						display: true,
+						text: "Vendas de artigos eletrônicos mensais"
+					}
+				}
+			});
+
+			new Chart("myChart2", {
+				type: "pie",
+				data: {
+					labels: xValues,
+					datasets: [{
+						backgroundColor: barColors,
+						data: yValues
+					}]
+				},
+				options: {
+					title: {
+						display: true,
+						text: "Vendas de artigos eletrônicos mensais"
+					}
+				}
+			});
+
+			new Chart("myChart3", {
+				type: "horizontalBar",
+				data: {
+					labels: xValues,
+					datasets: [{
+						backgroundColor: barColors,
+						data: yValues
+					}]
+				},
+				options: {
+					legend: { display: false },
+					title: {
+						display: true,
+						text: "Vendas de artigos eletrônicos mensais"
+					}
+				}
+			});
+		});
+
+		$('#export').click(function () {
+			const xValues = ["Funko", "GPU", "Led", "Teclado", "Rato"];
+			const yValues = [funko, gpu, led, teclado, rato];
+
+			let data = [["Produto", "Vendas"]];
+			for (let i = 0; i < xValues.length; i++) {
+				data.push([xValues[i], yValues[i]]);
+			}
+
+			let ws = XLSX.utils.aoa_to_sheet(data);
+			let wb = XLSX.utils.book_new();
+			XLSX.utils.book_append_sheet(wb, ws, "Vendas");
+
+			XLSX.writeFile(wb, "vendas.xlsx");
+		});
 
 		const xValues = ["Funko", "GPU", "Led", "Teclado", "Rato"];
-		const yValues = [funko, gpu, led, teclado, rato, 0];
+		const yValues = [0, 0, 0, 0, 0];
 		const barColors = ["red", "green", "blue", "orange", "brown"];
 
 		new Chart("myChart", {
@@ -103,7 +188,6 @@
 				}
 			}
 		});
-
 
 		new Chart("myChart3", {
 			type: "horizontalBar",
@@ -123,65 +207,6 @@
 			}
 		});
 	});
-
-	const xValues = ["funko", "GPU", "Led", "Teclado", "Rato"];
-		const yValues = [0, 0, 0, 0, 0, 0];
-		const barColors = ["red", "green", "blue", "orange", "brown"];
-
-		new Chart("myChart", {
-			type: "bar",
-			data: {
-				labels: xValues,
-				datasets: [{
-					backgroundColor: barColors,
-					data: yValues
-				}]
-			},
-			options: {
-				legend: { display: false },
-				title: {
-					display: true,
-					text: "Vendas de artigos eletrônicos mensais"
-				}
-			}
-		});
-
-		new Chart("myChart2", {
-			type: "pie",
-			data: {
-				labels: xValues,
-				datasets: [{
-					backgroundColor: barColors,
-					data: yValues
-				}]
-			},
-			options: {
-				title: {
-					display: true,
-					text: "Vendas de artigos eletrônicos mensais"
-				}
-			}
-		});
-
-
-		new Chart("myChart3", {
-			type: "horizontalBar",
-			data: {
-				labels: xValues,
-				datasets: [{
-					backgroundColor: barColors,
-					data: yValues
-				}]
-			},
-			options: {
-				legend: { display: false },
-				title: {
-					display: true,
-					text: "Vendas de artigos eletrônicos mensais"
-				}
-			}
-		});
-
 </script>
 
 </html>

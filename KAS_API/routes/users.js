@@ -2,6 +2,12 @@ const express = require('express');
 const router = express.Router();
 const users = require('../services/users');
 
+/*LOG IN */ 
+router.post('/login',async function(req, res, next) {
+  var response = await users.login(req.body);
+  
+});
+
 /* GET USERS. */
 router.get('/', async function(req, res, next) {
   try {

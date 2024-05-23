@@ -42,8 +42,9 @@ $(document).ready(function () {
                     email: email,
                     logo: null
                 },
-                function (data, status) {
-                    alert("Data: " + data + "\nStatus: " + status);
+                function (data) {
+                }).fail(function(response){
+                    
                 });
                 
                 setCookie("login", true);
