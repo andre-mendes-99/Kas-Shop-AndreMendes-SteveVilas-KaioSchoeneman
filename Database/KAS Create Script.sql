@@ -18,6 +18,7 @@ create table product(
 CREATE TABLE sales(
     sales_id int not null auto_increment primary key,                                        -- Primary key, auto incrementing
     sales_amount decimal(13,2) not null                                                      -- Sales amount, fixed length
+    sales_user_id int                                                                        -- Foreign key to user
 );
 
 CREATE TABLE delivery(
@@ -45,4 +46,9 @@ ON DELETE NO ACTION ON UPDATE NO ACTION;
 alter table product
 add constraint product_fk_delivery
 foreign key (product_delivery_id) references delivery(delivery_id)
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+alter table sales
+add constraint sales_fk_app_users
+foreign key (sales_user_id) references app_users(user_id)
 ON DELETE NO ACTION ON UPDATE NO ACTION;
