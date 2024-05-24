@@ -3,7 +3,7 @@ create table app_users(
                     user_name varchar(120),                                                  -- User name, variable length
                     user_email varchar(120) unique not null,                                 -- User email, it is unique and not null
                     user_logo longblob,                                                      -- User logo, binary data
-                    user_password varchar(60) not null,                                      -- User password, fixed length
+                    user_password varchar(60) not null                                       -- User password, fixed length
 );
 
 create table product(
@@ -35,14 +35,14 @@ CREATE TABLE productType(
 alter table product
 add constraint product_fk_sales
 foreign key (product_sales_id) references sales(sales_id)
-ON DELETE NO ACTION ON UPDATE NO ACTION
+ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 alter table product
 add constraint product_fk_productType
 foreign key (product_type_id) references productType(type_id)
-ON DELETE NO ACTION ON UPDATE NO ACTION
+ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 alter table product
 add constraint product_fk_delivery
 foreign key (product_delivery_id) references delivery(delivery_id)
-ON DELETE NO ACTION ON UPDATE NO ACTION
+ON DELETE NO ACTION ON UPDATE NO ACTION;
