@@ -15,18 +15,18 @@ create table product(
                         product_delivery_id int                                              -- Where the product went 
 );
 
-CREATE TABLE sales(
+create table sales(
     sales_id int not null auto_increment primary key,                                        -- Primary key, auto incrementing
-    sales_amount decimal(13,2) not null                                                      -- Sales amount, fixed length
+    sales_amount decimal(13,2) not null,                                                     -- Sales amount, fixed length
     sales_user_id int                                                                        -- Foreign key to user
 );
 
-CREATE TABLE delivery(
+create table delivery(
     delivery_id int not null auto_increment primary key,                                     -- Primary key, auto incrementing
     geom point not null                                                                      -- Geographic data
 );
 
-CREATE TABLE productType(
+create table productType(
     type_id int not null auto_increment primary key,                                         -- Primary key, auto incrementing
     type_name varchar(60) not null                                                           -- Product type name, variable length
 );
