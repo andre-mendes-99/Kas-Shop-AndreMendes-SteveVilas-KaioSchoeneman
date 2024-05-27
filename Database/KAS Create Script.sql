@@ -23,6 +23,7 @@ create table sales(
 
 create table delivery(
     delivery_id int not null auto_increment primary key,                                     -- Primary key, auto incrementing
+    delivery_name text,                                                                      -- Location name
     geom point not null                                                                      -- Geographic data
 );
 
