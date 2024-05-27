@@ -65,3 +65,7 @@ insert into delivery (delivery_name, geom)
 values ('Corroios', ST_GeomFromText('POINT(38.6337 9.1432)'));
 insert into delivery (delivery_name, geom)
 values ('Almada', ST_GeomFromText('POINT(38.6780 9.1551)'));
+insert into delivery (delivery_name, geom)
+values ('Carnaxide', ST_GeomFromText('POINT(38.7203 9.2491)'));
+insert into delivery (delivery_name, geom)
+values ('Queluz', ST_GeomFromText('POINT(38.7565 9.2561)'));
