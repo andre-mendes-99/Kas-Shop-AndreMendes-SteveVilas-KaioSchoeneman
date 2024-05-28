@@ -31,6 +31,10 @@
 	</section>
 	<center><h1>Stocks</h1></center>
 	<br>
+	<p id="produtobarato"></p>
+	<p id="produtocaro"></p>
+	<p id="media"></p>
+	</div>
 	<center>
 		<div class="graficos">
 			<canvas id="myChart" style="width:100%;max-width:600px"></canvas>
@@ -64,5 +68,27 @@
 </body>
 <script src="/javascript/scripts_allpages.js"></script>
 <script src="/javascript/cookies.js"></script>
+<script>
+ $(document).ready(function() {
+        // Chamada AJAX para obter o produto mais barato
+        $.get("http://localhost:3000/products/chepeastprod", function(data) {
+            $('#produtobarato').text("Produto Mais Barato: " + data.data[0].product_name + " - Preço: " + data.data[0].product_price);
+        });
 
+        // Chamada AJAX para obter o produto mais caro
+        $.get("http://localhost:3000/products/costliestprod", function(data) {
+            $('#produtocaro').text("Produto Mais Caro: " + data.data[0].product_name + " - Preço: " + data.data[0].product_price);
+        });
+
+        // Chamada AJAX para obter todos os produtos e calcular a média de preços
+        $.get("http://localhost:3000/products", function(data) {
+            let totalPrices = 0;
+            data.data.forEach(function(product) {
+                totalPrices += parseFloat(product.product_price);
+            });
+            const averagePrice = totalPrices / data.data.length;
+            $('#media').text("Média de Preços: " + averagePrice.toFixed(2));
+        });
+    });
+</script>
 </html>
