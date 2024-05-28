@@ -35,22 +35,33 @@ $(document).ready(function () {
 
 
         if ((name != "" && pass != "")) {
-            $.post("http://localhost:3000/users",
-                {
-                    name: name,
-                    pass: pass,
-                    email: email,
-                    logo: null
+            $.ajax({
+                url: 'http://localhost:3000/users',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                  name: name,
+                  pass: pass,
+                  email: email,
+                  logo: null
+                }),
+                success: function(response) {
+                  if (response.message) {
+                    alert(response.message);
+                    if (response.message === 'Registo efectuado com sucesso!') {
+                      setCookie("login", true);
+                      window.location.replace("index.html");
+                    }
+                  } else {
+                    alert("Falha no registo: " + response.message);
+                  }
                 },
-                function (data) {
-                }).fail(function(response){
-                    
-                });
-                
-                setCookie("login", true);
-                window.location.replace("index.html");
-
-        }
+                error: function(error) {
+                  console.error("Falha no registo", error);
+                  alert("An error occurred during registration. Please try again.");
+                }
+              });
+            }
 
     });
 

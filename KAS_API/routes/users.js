@@ -3,10 +3,27 @@ const router = express.Router();
 const users = require('../services/users');
 
 /*LOG IN */ 
-router.post('/login',async function(req, res, next) {
-  var response = await users.login(req.body);
-  
+router.post('/login', async function(req, res, next) {
+  try {
+    const response = await users.login(req.body);
+
+    if (response.auth) {
+      res.status(200).json({
+        success: true,
+        message: 'Login successful',
+        token: response.token
+      });
+    } else {
+      res.status(401).json({
+        success: false,
+        message: response.message || 'Login failed'
+      });
+    }
+  } catch (error) {
+    next(error);
+  }
 });
+
 
 /* GET USERS. */
 router.get('/', async function(req, res, next) {

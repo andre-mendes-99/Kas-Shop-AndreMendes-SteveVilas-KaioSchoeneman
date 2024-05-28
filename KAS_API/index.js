@@ -1,7 +1,15 @@
 const express = require("express");
 const app = express();
 const port = 3000;
+const cors = require('cors');
 const usersRouter = require("./routes/users");
+app.use(cors());
+const corsOptions = {
+    origin: 'http://127.0.0.1:5500', 
+    optionsSuccessStatus: 200 // Algumas versões de navegadores exigem esse status
+  };
+  
+  app.use(cors(corsOptions));
 app.use(express.json());
 app.use(
     express.urlencoded({

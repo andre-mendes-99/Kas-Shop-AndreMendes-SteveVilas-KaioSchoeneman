@@ -22,7 +22,7 @@ values (670);
 insert into sales (sales_amount)
 values (200);
 insert into sales (sales_amount)
-insert into (45);
+values (45);
 
 insert into product(product_name, product_type_id, product_price, product_sales_id)
 values ('Funko Kakashi', 1, 16, 1);

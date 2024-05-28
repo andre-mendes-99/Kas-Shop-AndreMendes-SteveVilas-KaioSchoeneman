@@ -1,12 +1,13 @@
 const db = require('./db');
 const helper = require('../helper');
 const config = require('../config');
+const jwt = require('jsonwebtoken'); // Importar jwt
 
 async function getUsers(page = 1) {
   const offset = helper.getOffset(page, config.listPerPage);
   const rows = await db.query(
     `SELECT *
-    FROM user LIMIT ${offset},${config.listPerPage}`
+    FROM app_users LIMIT ${offset},${config.listPerPage}`
   );
   const data = helper.emptyOrRows(rows);
   const meta = { page };
@@ -20,23 +21,58 @@ async function getUsers(page = 1) {
 //login
 async function login(user) {
   const result = await db.query(
-    `SELECT user_name, user_password, user_email, user_logo FROM user
-    WHERE user_name = ${user.name} 
-    AND user_password = ${user.pass}`
+    `SELECT user_id, user_name, user_password, user_email, user_logo FROM app_users
+     WHERE user_email = '${user.email}'`
   );
-  let message = 'Error login in';
-
+  let message = 'Error logging in';
 
   if (result.length > 0) {
-    return true;
-  }
-  else { return false; }
+    const userRecord = result[0];
+    
+    if (userRecord.user_password) {
+      // Assuming `decrypt` is used to decrypt the stored password
+      try {
+        const decryptedPassword =userRecord.user_password;
+        const passwordIsValid = decryptedPassword === user.pass;
 
+        if (passwordIsValid) {
+          // Generate a token
+          const token = jwt.sign(
+            { id: userRecord.user_id, name: userRecord.user_name },
+            config.secret, // Use a secret key from your config
+            { expiresIn: '12h' } // Token expires in 1 hour
+          );
+
+          return { auth: true, token: token };
+        } else {
+          message = 'Invalid credentials';
+        }
+      } catch (err) {
+        console.error('Error decrypting password', err);
+        message = 'Error decrypting password';
+      }
+    } else {
+      message = 'Password is undefined';
+    }
+  }
+
+  return { auth: false, token: null, message: message };
 }
+
 //register
 async function register(user) {
+  // Verificar se o email já existe
+  const emailCheck = await db.query(
+    `SELECT user_id FROM app_users WHERE user_email = '${user.email}'`
+  );
+
+  if (emailCheck.length > 0) {
+    return { message: 'Email já existe' };
+  }
+
+  // Inserir o novo usuário
   const result = await db.query(
-    `INSERT INTO user 
+    `INSERT INTO app_users 
       (user_name, user_password, user_email, user_logo)
       VALUES 
       ('${user.name}', '${user.pass}', '${user.email}', '${user.logo}')`
@@ -45,16 +81,24 @@ async function register(user) {
   let message = 'Error in creating user';
 
   if (result.affectedRows) {
-    message = 'User created successfully';
+    message = 'Registo efectuado com sucesso!';
+    // Gerar um token
+    const token = jwt.sign(
+      { id: result.insertId, name: user.name },
+      config.secret, // Use a secret key from your config
+      { expiresIn: '12h' } // Token expires in 1 hour
+    );
+
+    return { message: message, token: token };
   }
 
-  return { message };
+  return { message: message };
 }
 
 
 async function update(id, user) {
   const result = await db.query(
-    `UPDATE user 
+    `UPDATE app_users 
       SET user_name="${user.name}", user_password=${user.pass}, user_email=${user.mail}, 
       user_logo=${user.logo}
       WHERE user_id=${id}`
@@ -72,7 +116,7 @@ async function update(id, user) {
 
 async function remove(id) {
   const result = await db.query(
-    `DELETE FROM user WHERE user_id=${id}`
+    `DELETE FROM app_users WHERE user_id=${id}`
   );
 
   let message = 'Error in deleting user';
@@ -86,6 +130,7 @@ async function remove(id) {
 
 module.exports = {
   getUsers,
+  login,
   register,
   update,
   remove

@@ -8,6 +8,8 @@ const config = {
       connectTimeout: 60000
     },
     listPerPage: 10,
+    secret: 'Passw0rd' 
+
   };
   module.exports = config;
   
