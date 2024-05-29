@@ -11,7 +11,6 @@ create table product(
                         product_name text,                                                   -- Product name, variable lenght
                         product_type_id int,                                                 -- Product type
                         product_price decimal(13,2) not null,                                -- Product value, fixed lenght
-                        product_sales_id int,                                                -- Product price
                         product_delivery_id int,                                             -- Where the product went
                         product_quantity int not null                                        -- Product quantity
 );
@@ -19,7 +18,7 @@ create table product(
 create table sales(
     sales_id int not null auto_increment primary key,                                        -- Primary key, auto incrementing
     sales_amount decimal(13,2) not null,                                                     -- Sales amount, fixed length
-    sales_user_id int                                                                        -- Foreign key to user
+    sales_user_id int                                                                        -- Foreign key to user   
 );
 
 create table delivery(
@@ -33,12 +32,14 @@ create table productType(
     type_name varchar(60) not null                                                           -- Product type name, variable length
 );
 
--- Foreign Keys
+create table PV(
+                PV_id int not null auto_increment primary key,                               -- Primary key, auto incrementing
+                PV_product_id int not null,                                                  -- Foreign key to product
+                PV_sales_id int not null,                                                    -- Foreign key to sales
+                PV_amount int not null                                                       -- How many time the product was sold
+);
 
-alter table product
-add constraint product_fk_sales
-foreign key (product_sales_id) references sales(sales_id)
-ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- Foreign Keys
 
 alter table product
 add constraint product_fk_productType
@@ -53,4 +54,14 @@ ON DELETE NO ACTION ON UPDATE NO ACTION;
 alter table sales
 add constraint sales_fk_app_users
 foreign key (sales_user_id) references app_users(user_id)
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+alter table PV
+add constraint PV_fk_product
+foreign key (PV_product_id) references product(product_id)
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+alter table PV
+add constraint PV_fk_sales
+foreign key (PV_sales_id) references sales(sales_id)
 ON DELETE NO ACTION ON UPDATE NO ACTION;
