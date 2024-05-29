@@ -12,7 +12,8 @@ create table product(
                         product_type_id int,                                                 -- Product type
                         product_price decimal(13,2) not null,                                -- Product value, fixed lenght
                         product_sales_id int,                                                -- Product price
-                        product_delivery_id int                                              -- Where the product went 
+                        product_delivery_id int,                                             -- Where the product went
+                        product_quantity int not null                                        -- Product quantity
 );
 
 create table sales(
