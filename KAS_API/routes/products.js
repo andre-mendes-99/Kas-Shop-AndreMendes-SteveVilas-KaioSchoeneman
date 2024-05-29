@@ -37,7 +37,7 @@ router.get('/costliestprod', async function(req, res, next) {
 
 
   /* PUT  products */
-router.put('/:id', async function(req, res, next) {
+router.put('/updateStock/:id', async function(req, res, next) {
     try {
       res.json(await products.Addstock(req.params.id, req.body));
     } catch (err) {

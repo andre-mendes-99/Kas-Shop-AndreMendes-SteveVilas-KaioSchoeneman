@@ -42,7 +42,8 @@ async function getChepestProduct(page = 1) {
     const rows = await db.query(
       `SELECT product_name, product_price
       FROM product
-      WHERE product_price = (SELECT MAX(product_price) FROM product) LIMIT ${offset},${config.listPerPage};`
+      WHERE product_price = (SELECT MAX(product_price) FROM product)
+      LIMIT ${offset}, ${config.listPerPage};`
     );
     const data = helper.emptyOrRows(rows);
     const meta = { page };
@@ -51,20 +52,20 @@ async function getChepestProduct(page = 1) {
       data,
       meta
     }
-  }
+}
 
-async function Addstock(id, user) {
+async function Addstock(id, product) {
   const result = await db.query(
-    `UPDATE app_users 
-      SET user_name="${user.name}", user_password=${user.pass}, user_email=${user.mail}, 
-      user_logo=${user.logo}
-      WHERE user_id=${id}`
+    `UPDATE product 
+      SET product_quantity = ? 
+      WHERE product_id = ?`,
+    [product.product_quantity, id]
   );
 
-  let message = 'Error in updating user';
+  let message = 'Erro ao atualizar estoque';
 
   if (result.affectedRows) {
-    message = 'User updated successfully';
+    message = 'Estoque atualizado com sucesso';
   }
 
   return { message };

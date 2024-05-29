@@ -31,15 +31,25 @@
 	</section>
 	<center><h1>Stocks</h1></center>
 	<br>
-	<p id="produtobarato"></p>
-	<p id="produtocaro"></p>
-	<p id="media"></p>
+	<p class="estatistica" id="produtobarato"></p>
+	<p class="estatistica" id="produtocaro"></p>
+	<p class="estatistica" id="media"></p>
 	</div>
 	<center>
 		<div class="graficos">
 			<canvas id="myChart" style="width:100%;max-width:600px"></canvas>
 		</div>
 	</center>
+<br> <br>
+	<center>
+        <form id="stockForm">
+            <label for="productSelect">Produto:</label>
+            <select id="productSelect" name="product"></select>
+            <label for="quantity">Quantidade:</label>
+            <input type="number" id="quantity" name="quantity" required>
+            <button type="submit">Atualizar Stock</button>
+        </form>
+    </center>
 
 	<script>
 		const xValues = [50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150];
@@ -70,25 +80,116 @@
 <script src="/javascript/cookies.js"></script>
 <script>
  $(document).ready(function() {
-        // Chamada AJAX para obter o produto mais barato
-        $.get("http://localhost:3000/products/chepeastprod", function(data) {
-            $('#produtobarato').text("Produto Mais Barato: " + data.data[0].product_name + " - Preço: " + data.data[0].product_price);
+    // Chamada AJAX para obter o produto mais barato
+    $.get("http://localhost:3000/products/chepeastprod", function(data) {
+        if (data.data.length > 0) {
+            $('#produtobarato').text("Produto Mais Barato: " + data.data[0].product_name + " - Preço: " + data.data[0].product_price + "€");
+        } else {
+            $('#produtobarato').text("Produto Mais Barato: Nenhum produto encontrado.");
+        }
+    });
+
+    // Chamada AJAX para obter o produto mais caro
+    $.get("http://localhost:3000/products/costliestprod", function(data) {
+        if (data.data.length > 0) {
+            $('#produtocaro').text("Produto Mais Caro: " + data.data[0].product_name + " - Preço: " + data.data[0].product_price + "€");
+        } else {
+            $('#produtocaro').text("Produto Mais Caro: Nenhum produto encontrado.");
+        }
+    });
+
+    // Chamada AJAX para obter todos os produtos e calcular a média de preços
+    $.get("http://localhost:3000/products", function(data) {
+        let totalPrices = 0;
+        let productNames = [];
+        let productStocks = [];
+        let backgroundColors = [];
+        let borderColors = [];
+
+        data.data.forEach(function(product, index) {
+            totalPrices += parseFloat(product.product_price);
+            productNames.push(product.product_name);
+            productStocks.push(product.product_quantity);
+
+            // Generate random color for each product
+            let color = getRandomColor();
+            backgroundColors.push(color.background);
+            borderColors.push(color.border);
+
+			$('#productSelect').append(new Option(product.product_name, product.product_id));
+
         });
 
-        // Chamada AJAX para obter o produto mais caro
-        $.get("http://localhost:3000/products/costliestprod", function(data) {
-            $('#produtocaro').text("Produto Mais Caro: " + data.data[0].product_name + " - Preço: " + data.data[0].product_price);
-        });
+        const averagePrice = totalPrices / data.data.length;
+        $('#media').text("Média de Preços: " + averagePrice.toFixed(2) + "€");
 
-        // Chamada AJAX para obter todos os produtos e calcular a média de preços
-        $.get("http://localhost:3000/products", function(data) {
-            let totalPrices = 0;
-            data.data.forEach(function(product) {
-                totalPrices += parseFloat(product.product_price);
-            });
-            const averagePrice = totalPrices / data.data.length;
-            $('#media').text("Média de Preços: " + averagePrice.toFixed(2));
+        // Fill the chart with stock data
+        new Chart("myChart", {
+            type: "bar",
+            data: {
+                labels: productNames,
+                datasets: [{
+                    label: 'Stock',
+                    backgroundColor: backgroundColors,
+                    borderColor: borderColors,
+                    borderWidth: 1,
+                    data: productStocks
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                },
+                legend: {
+                    display: true,
+                    position: 'top',
+                    labels: {
+                        boxWidth: 40,
+                        fontColor: 'black'
+                    }
+                }
+            }
         });
     });
+
+    function getRandomColor() {
+        const letters = '0123456789ABCDEF';
+        let color = '#';
+        for (let i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return {
+            background: color + '80', // Add transparency
+            border: color
+        };
+    }
+	 // Form submission handler
+	 $('#stockForm').submit(function (event) {
+                event.preventDefault();
+                const productId = $('#productSelect').val();
+                const quantity = $('#quantity').val();
+
+                // Chamada AJAX para atualizar o stock do produto
+                $.ajax({
+                    url: `http://localhost:3000/products/updateStock/${productId}`,
+                    type: "PUT",
+                    data: JSON.stringify({ product_quantity: quantity }),
+                    contentType: "application/json",
+                    success: function (response) {
+                        alert(response.message);
+						window.location.reload();
+                    },
+                    error: function (xhr, status, error) {
+                        alert("Erro ao atualizar stock: " + xhr.responseText);
+                    }
+                });
+            });
+
+});
+
 </script>
 </html>

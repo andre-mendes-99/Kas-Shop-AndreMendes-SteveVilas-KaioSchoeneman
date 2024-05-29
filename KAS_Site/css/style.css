@@ -214,3 +214,8 @@ input[type="checkbox"] :checked {
 {
   padding-left: 10px;
 }
+
+.estatistica
+{
+  color: white;
+}
