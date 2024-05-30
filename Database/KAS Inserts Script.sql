@@ -24,30 +24,30 @@ values (200);
 insert into sales (sales_amount)
 values (45);
 
-insert into product(product_name, product_type_id, product_price, product_sales_id)
-values ('Funko Kakashi', 1, 16, 1);
-insert into product(product_name, product_type_id, product_price, product_sales_id)
-values ('Fita LED Xiaomi Smart Lightstrip Pro RGB 2m', 3, 30, 1);
-insert into product(product_name, product_type_id, product_price, product_sales_id)
-values ('Teclado Mecânico Razer Blackwidow', 4, 90, 1);
-insert into product(product_name, product_type_id, product_price, product_sales_id)
-values ('Rato Óptico Logitech G502 HERO', 5, 70, 1);
-insert into product(product_name, product_type_id, product_price, product_sales_id)
-values ('Funko Ichigo', 1, 16, 2);
-insert into product(product_name, product_type_id, product_price, product_sales_id)
-values ('Rato Óptico Steelseries Aerox 3 RGB', 5, 110, 2);
-insert into product(product_name, product_type_id, product_price, product_sales_id)
-values ('Placa Gráfica MSI GeForce RTX 4070', 2, 670, 4);
-insert into product(product_name, product_type_id, product_price, product_sales_id)
-values ('Teclado Mecânico MSI Vigor GK50', 4, 70, 2);
-insert into product(product_name, product_type_id, product_price, product_sales_id)
-values ('Fita LED Nedis 5m', 3, 20, 2);
-insert into product(product_name, product_type_id, product_price, product_sales_id)
-values ('Placa Gráfica Asus GeForce RTX 4090', 2, 2440, 3);
-insert into product(product_name, product_type_id, product_price, product_sales_id)
-values ('Headset Logitech G Pro X2 Lightspeed Gaming', 6, 200, 5);
-insert into product(product_name, product_type_id, product_price, product_sales_id)
-values ('Headset Razer Kaira X Playstation Licensed', 6, 45,6);
+insert into product(product_name, product_type_id, product_price, product_quantity)
+values ('Funko Kakashi', 1, 16, 21);
+insert into product(product_name, product_type_id, product_price, product_quantity)
+values ('Fita LED Xiaomi Smart Lightstrip Pro RGB 2m', 3, 30, 48);
+insert into product(product_name, product_type_id, product_price, product_quantity)
+values ('Teclado Mecânico Razer Blackwidow', 4, 90, 46);
+insert into product(product_name, product_type_id, product_price, product_quantity)
+values ('Rato Óptico Logitech G502 HERO', 5, 70, 8);
+insert into product(product_name, product_type_id, product_price, product_quantity)
+values ('Funko Ichigo', 1, 16, 7);
+insert into product(product_name, product_type_id, product_price, product_quantity)
+values ('Rato Óptico Steelseries Aerox 3 RGB', 5, 110, 26);
+insert into product(product_name, product_type_id, product_price, product_quantity)
+values ('Placa Gráfica MSI GeForce RTX 4070', 2, 670, 32);
+insert into product(product_name, product_type_id, product_price, product_quantity)
+values ('Teclado Mecânico MSI Vigor GK50', 4, 70, 45);
+insert into product(product_name, product_type_id, product_price, product_quantity)
+values ('Fita LED Nedis 5m', 3, 20, 9);
+insert into product(product_name, product_type_id, product_price, product_quantity)
+values ('Placa Gráfica Asus GeForce RTX 4090', 2, 2440, 12);
+insert into product(product_name, product_type_id, product_price, product_quantity)
+values ('Headset Logitech G Pro X2 Lightspeed Gaming', 6, 200, 30);
+insert into product(product_name, product_type_id, product_price, product_quantity)
+values ('Headset Razer Kaira X Playstation Licensed', 6, 45, 19);
 
 insert into delivery (delivery_name, geom) 
 values ('IADE', ST_GeomFromText('POINT(38.7147 9.1463)'));
@@ -69,3 +69,28 @@ insert into delivery (delivery_name, geom)
 values ('Carnaxide', ST_GeomFromText('POINT(38.7203 9.2491)'));
 insert into delivery (delivery_name, geom)
 values ('Queluz', ST_GeomFromText('POINT(38.7565 9.2561)'));
+
+insert into PV (pv_product_id, pv_sales_id, pv_amount)
+values (1, 1, 5);
+insert into PV (pv_product_id, pv_sales_id, pv_amount)
+values (2, 1, 20);
+insert into PV (pv_product_id, pv_sales_id, pv_amount)
+values (3, 1, 8);
+insert into PV (pv_product_id, pv_sales_id, pv_amount)
+values (4, 1, 15);
+insert into PV (pv_product_id, pv_sales_id, pv_amount)
+values (5, 2, 5);
+insert into PV (pv_product_id, pv_sales_id, pv_amount)
+values (6, 2, 15);
+insert into PV (pv_product_id, pv_sales_id, pv_amount)
+values (7, 4, 30);
+insert into PV (pv_product_id, pv_sales_id, pv_amount)
+values (8, 2, 8);
+insert into PV (pv_product_id, pv_sales_id, pv_amount)
+values (9, 2, 20);
+insert into PV (pv_product_id, pv_sales_id, pv_amount)
+values (10, 3, 30);
+insert into PV (pv_product_id, pv_sales_id, pv_amount)
+values (11, 5, 10);
+insert into PV (pv_product_id, pv_sales_id, pv_amount)
+values (12, 6, 10);
