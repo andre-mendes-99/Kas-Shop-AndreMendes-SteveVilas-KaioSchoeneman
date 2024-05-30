@@ -70,27 +70,27 @@ values ('Carnaxide', ST_GeomFromText('POINT(38.7203 9.2491)'));
 insert into delivery (delivery_name, geom)
 values ('Queluz', ST_GeomFromText('POINT(38.7565 9.2561)'));
 
-insert into PV (pv_product_id, pv_sales_id, pv_amount)
-values (1, 1, 5);
-insert into PV (pv_product_id, pv_sales_id, pv_amount)
-values (2, 1, 20);
-insert into PV (pv_product_id, pv_sales_id, pv_amount)
-values (3, 1, 8);
-insert into PV (pv_product_id, pv_sales_id, pv_amount)
-values (4, 1, 15);
-insert into PV (pv_product_id, pv_sales_id, pv_amount)
-values (5, 2, 5);
-insert into PV (pv_product_id, pv_sales_id, pv_amount)
-values (6, 2, 15);
-insert into PV (pv_product_id, pv_sales_id, pv_amount)
-values (7, 4, 30);
-insert into PV (pv_product_id, pv_sales_id, pv_amount)
-values (8, 2, 8);
-insert into PV (pv_product_id, pv_sales_id, pv_amount)
-values (9, 2, 20);
-insert into PV (pv_product_id, pv_sales_id, pv_amount)
-values (10, 3, 30);
-insert into PV (pv_product_id, pv_sales_id, pv_amount)
-values (11, 5, 10);
-insert into PV (pv_product_id, pv_sales_id, pv_amount)
-values (12, 6, 10);
+insert into PV (pv_product_id, pv_sales_id, pv_amount, pv_delivery_id)
+values (1, 1, 5, 2);
+insert into PV (pv_product_id, pv_sales_id, pv_amount, pv_delivery_id)
+values (2, 1, 20, 2);
+insert into PV (pv_product_id, pv_sales_id, pv_amount, pv_delivery_id)
+values (3, 1, 8, 2);
+insert into PV (pv_product_id, pv_sales_id, pv_amount, pv_delivery_id)
+values (4, 1, 15, 2);
+insert into PV (pv_product_id, pv_sales_id, pv_amount, pv_delivery_id)
+values (5, 2, 5, 3);
+insert into PV (pv_product_id, pv_sales_id, pv_amount, pv_delivery_id)
+values (6, 2, 15, 3);
+insert into PV (pv_product_id, pv_sales_id, pv_amount, pv_delivery_id)
+values (7, 4, 30, 7);
+insert into PV (pv_product_id, pv_sales_id, pv_amount, pv_delivery_id)
+values (8, 2, 8, 3);
+insert into PV (pv_product_id, pv_sales_id, pv_amount, pv_delivery_id)
+values (9, 2, 20, 3);
+insert into PV (pv_product_id, pv_sales_id, pv_amount, pv_delivery_id)
+values (10, 3, 30, 4);
+insert into PV (pv_product_id, pv_sales_id, pv_amount, pv_delivery_id)
+values (11, 5, 10, 8);
+insert into PV (pv_product_id, pv_sales_id, pv_amount, pv_delivery_id)
+values (12, 6, 10, 10);
