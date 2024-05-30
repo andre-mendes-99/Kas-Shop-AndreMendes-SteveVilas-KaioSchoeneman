@@ -57,7 +57,7 @@ async function getChepestProduct(page = 1) {
 async function Addstock(id, product) {
   const result = await db.query(
     `UPDATE product 
-      SET product_quantity = ? 
+      SET product_quantity = product_quantity + ? 
       WHERE product_id = ?`,
     [product.product_quantity, id]
   );

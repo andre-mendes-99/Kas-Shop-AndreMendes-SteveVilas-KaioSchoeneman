@@ -15,7 +15,6 @@
 <body>
 	<section>
 		<ul>
-			<li id="paginaInicial"><a href="index.html"><img src="KAS_logo_1.png" alt="logo" width="50px" height="50%"></a></li>
 			<li id="statsdeStats"><a href="estatistica.html">Mapas</a></li>
 			<li id="statsDeStocks"><a href="stocks.html">Stocks</a></li>
 			<li id="statsdeGraphs"><a href="grafica.html">Gráficos</a></li>
@@ -33,13 +32,7 @@
 	</center>
 	<br>
 
-	<input type="number" id="funko" placeholder="Insira o numero de vendas de funko">
-	<input type="number" id="gpu" placeholder="Insira o numero de vendas de GPU">
-	<input type="number" id="led" placeholder="Insira o numero de vendas de LED">
-	<input type="number" id="teclado" placeholder="Insira o numero de vendas de teclado">
-	<input type="number" id="rato" placeholder="Insira o numero de vendas de rato">
 
-	<button id="btnatualizarVendas">Atualizar</button>
 	<button id="export">Exportar</button>
 
 	<br>
@@ -63,151 +56,144 @@
 <script src="/javascript/cookies.js"></script>
 <script>
 	$(document).ready(function () {
-		let funko = 0;
-		let gpu = 0;
-		let led = 0;
-		let teclado = 0;
-		let rato = 0;
 
+		$.ajax({
+			url: 'http://localhost:3000/sales/getProductSales',
+			type: 'GET',
+			dataType: 'json',
+			success: function (response) {
+				const data = response;
 
+				// Extrair os dados necessários para os gráficos
+				const productNames = data.map(item => item.product_name);
+				const totalSales = data.map(item => item.total_sales);
 
-		$('#btnatualizarVendas').click(function () {
-			funko = $('#funko').val();
-			gpu = $('#gpu').val();
-			led = $('#led').val();
-			teclado = $('#teclado').val();
-			rato = $('#rato').val();
+				// Definir paleta de cores
+				const colors = generateColors(productNames.length);
 
-			const xValues = ["Funko", "GPU", "Led", "Teclado", "Rato"];
-			const yValues = [funko, gpu, led, teclado, rato];
-			const barColors = ["red", "green", "blue", "orange", "brown"];
-
-			new Chart("myChart", {
-				type: "bar",
-				data: {
-					labels: xValues,
-					datasets: [{
-						backgroundColor: barColors,
-						data: yValues
-					}]
-				},
-				options: {
-					legend: { display: false },
-					title: {
-						display: true,
-						text: "Vendas de artigos eletrônicos mensais"
-					}
-				}
-			});
-
-			new Chart("myChart2", {
-				type: "pie",
-				data: {
-					labels: xValues,
-					datasets: [{
-						backgroundColor: barColors,
-						data: yValues
-					}]
-				},
-				options: {
-					title: {
-						display: true,
-						text: "Vendas de artigos eletrônicos mensais"
-					}
-				}
-			});
-
-			new Chart("myChart3", {
-				type: "horizontalBar",
-				data: {
-					labels: xValues,
-					datasets: [{
-						backgroundColor: barColors,
-						data: yValues
-					}]
-				},
-				options: {
-					legend: { display: false },
-					title: {
-						display: true,
-						text: "Vendas de artigos eletrônicos mensais"
-					}
-				}
-			});
+				// Plotar gráfico de barras para as vendas de produtos
+				plotBarChart(productNames, totalSales, colors);
+				plotPieChart(productNames, totalSales, colors);
+				plotHorizontalBarChart(productNames, totalSales, colors);
+			},
+			error: function (xhr, status, error) {
+				console.error('Erro ao obter dados dos produtos:', error);
+			}
 		});
+
+		// Função para gerar cores aleatórias
+		function generateColors(numColors) {
+			const colors = [];
+			for (let i = 0; i < numColors; i++) {
+				const color = '#' + Math.floor(Math.random() * 16777215).toString(16);
+				colors.push(color);
+			}
+			return colors;
+		}
+
+		// Função para plotar gráfico de barras
+		function plotBarChart(labels, data, colors) {
+			var ctx = document.getElementById('myChart').getContext('2d');
+			var myChart = new Chart(ctx, {
+				type: 'bar',
+				data: {
+					labels: labels,
+					datasets: [{
+						label: 'Total de Vendas do Produto',
+						data: data,
+						backgroundColor: colors,
+						borderColor: 'rgba(54, 162, 235, 1)',
+						borderWidth: 1
+					}]
+				},
+				options: {
+					scales: {
+						y: {
+							beginAtZero: true
+						}
+					}
+				}
+			});
+		}
+
+		// Função para plotar gráfico de pizza
+		function plotPieChart(labels, data, colors) {
+			var ctx = document.getElementById('myChart2').getContext('2d');
+			var myChart = new Chart(ctx, {
+				type: 'pie',
+				data: {
+					labels: labels,
+					datasets: [{
+						label: 'Total de Vendas do Produto',
+						data: data,
+						backgroundColor: colors,
+						borderColor: 'rgba(255, 99, 132, 1)',
+						borderWidth: 1
+					}]
+				},
+				options: {
+					scales: {
+						y: {
+							beginAtZero: true
+						}
+					}
+				}
+			});
+		}
+
+		// Função para plotar gráfico de barra horizontal
+		function plotHorizontalBarChart(labels, data, colors) {
+			var ctx = document.getElementById('myChart3').getContext('2d');
+			var myChart = new Chart(ctx, {
+				type: 'horizontalBar',
+				data: {
+					labels: labels,
+					datasets: [{
+						label: 'Total de Vendas do Produto',
+						data: data,
+						backgroundColor: colors,
+						borderColor: 'rgba(75, 192, 192, 1)',
+						borderWidth: 1
+					}]
+				},
+				options: {
+					scales: {
+						x: {
+							beginAtZero: true
+						}
+					}
+				}
+			});
+		}
 
 		$('#export').click(function () {
-			const xValues = ["Funko", "GPU", "Led", "Teclado", "Rato"];
-			const yValues = [funko, gpu, led, teclado, rato];
+            $.ajax({
+                url: 'http://localhost:3000/sales/getProductSales',
+                type: 'GET',
+                dataType: 'json',
+                success: function (response) {
+                    const data = response;
 
-			let data = [["Produto", "Vendas"]];
-			for (let i = 0; i < xValues.length; i++) {
-				data.push([xValues[i], yValues[i]]);
-			}
+                    // Extrair os dados necessários para a exportação
+                    const worksheetData = data.map(item => [item.product_name, item.total_sales]);
+                    worksheetData.unshift(['Produto', 'Vendas']); // Adicionar cabeçalho
 
-			let ws = XLSX.utils.aoa_to_sheet(data);
-			let wb = XLSX.utils.book_new();
-			XLSX.utils.book_append_sheet(wb, ws, "Vendas");
+                    // Criar a planilha
+                    var worksheet = XLSX.utils.aoa_to_sheet(worksheetData);
 
-			XLSX.writeFile(wb, "vendas.xlsx");
-		});
+                    // Criar um novo livro de Excel e adicionar a planilha
+                    var workbook = XLSX.utils.book_new();
+                    XLSX.utils.book_append_sheet(workbook, worksheet, 'Vendas');
 
-		const xValues = ["Funko", "GPU", "Led", "Teclado", "Rato"];
-		const yValues = [0, 0, 0, 0, 0];
-		const barColors = ["red", "green", "blue", "orange", "brown"];
+                    // Salvar o arquivo Excel
+                    XLSX.writeFile(workbook, 'vendas.xlsx');
+                },
+                error: function (xhr, status, error) {
+                    console.error('Erro ao obter dados dos produtos:', error);
+                }
+            });
+        });
 
-		new Chart("myChart", {
-			type: "bar",
-			data: {
-				labels: xValues,
-				datasets: [{
-					backgroundColor: barColors,
-					data: yValues
-				}]
-			},
-			options: {
-				legend: { display: false },
-				title: {
-					display: true,
-					text: "Vendas de artigos eletrônicos mensais"
-				}
-			}
-		});
-
-		new Chart("myChart2", {
-			type: "pie",
-			data: {
-				labels: xValues,
-				datasets: [{
-					backgroundColor: barColors,
-					data: yValues
-				}]
-			},
-			options: {
-				title: {
-					display: true,
-					text: "Vendas de artigos eletrônicos mensais"
-				}
-			}
-		});
-
-		new Chart("myChart3", {
-			type: "horizontalBar",
-			data: {
-				labels: xValues,
-				datasets: [{
-					backgroundColor: barColors,
-					data: yValues
-				}]
-			},
-			options: {
-				legend: { display: false },
-				title: {
-					display: true,
-					text: "Vendas de artigos eletrônicos mensais"
-				}
-			}
-		});
 	});
 </script>
 

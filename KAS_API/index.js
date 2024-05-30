@@ -4,6 +4,8 @@ const port = 3000;
 const cors = require('cors');
 const usersRouter = require("./routes/users");
 const productsRouter = require("./routes/products");
+const salesRouter = require("./routes/sales");
+
 
 app.use(cors());
 const corsOptions = {
@@ -27,6 +29,7 @@ app.use("/users", usersRouter);
 
 app.use("/products", productsRouter);
 
+app.use("/sales", salesRouter);
 
 /* Error handler middleware */
 app.use((err, req, res, next) => {
