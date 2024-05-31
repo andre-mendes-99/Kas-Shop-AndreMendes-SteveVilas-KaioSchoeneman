@@ -5,7 +5,7 @@ const cors = require('cors');
 const usersRouter = require("./routes/users");
 const productsRouter = require("./routes/products");
 const salesRouter = require("./routes/sales");
-
+const locationsRouter = require("./routes/delivery");
 
 app.use(cors());
 const corsOptions = {
@@ -30,6 +30,8 @@ app.use("/users", usersRouter);
 app.use("/products", productsRouter);
 
 app.use("/sales", salesRouter);
+
+app.use("/deliverys", locationsRouter);
 
 /* Error handler middleware */
 app.use((err, req, res, next) => {
