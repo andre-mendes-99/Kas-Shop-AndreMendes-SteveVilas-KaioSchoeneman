@@ -1,0 +1,77 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #367B92;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.caixalgn {
+    background-color: #EB7131;
+    padding: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    width: 100%;
+    max-width: 400px;
+}
+
+h2 {
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+label {
+    display: block;
+    margin-bottom: 7px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"]{
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.alert {
+    color: black;
+    font-weight: bolder;
+    display: none;
+}
+
+input[type="checkbox"] {
+    margin-left: 5px;
+}
+
+.btnlogin {
+    background-color: #367B92;
+    color: white;
+    font-weight: 200;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+}
+
+.btnlogin:hover {
+    background-color: #333;
+    transition-duration: 1s;
+}
+
+.linktoregister {
+    color: #FFFFFF;
+    font-size: 14px;
+    text-decoration: none;
+  }
+  
+  .linktoregister:hover {
+    text-decoration: underline;
+  }

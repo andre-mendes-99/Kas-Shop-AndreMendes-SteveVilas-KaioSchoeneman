@@ -39,18 +39,15 @@
 <br> <br>
 	<center>
         <form id="stockForm">
-            <label for="productSelect">Produto:</label>
-            <select id="productSelect" name="product"></select>
-            <label for="quantity">Quantidade:</label>
+            <label class="lblsstoks" for="productSelect">Produto:</label>
+            <select class="select" id="productSelect" name="product"></select>
+            <label class="lblsstoks" for="quantity">Quantidade:</label>
             <input type="number" id="quantity" name="quantity" required>
-            <button type="submit">Atualizar Stock</button>
+            <button class="submitBtns" type="submit">Adicionar Stock</button>
         </form>
     </center>
 
-    <center><p class="estatistica" id="produtobarato"></p>
-        <p class="estatistica" id="produtocaro"></p>
-        <p class="estatistica" id="media"></p></center>
-</body>
+  
 <script src="/javascript/scripts_allpages.js"></script>
 <script src="/javascript/cookies.js"></script>
 <script>
@@ -95,8 +92,7 @@
 
         });
 
-        const averagePrice = totalPrices / data.data.length;
-        $('#media').text("Média de Preços: " + averagePrice.toFixed(2) + "€");
+       
 
         // Fill the chart with stock data
         new Chart("myChart", {

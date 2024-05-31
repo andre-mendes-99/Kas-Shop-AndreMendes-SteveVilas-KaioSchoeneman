@@ -97,6 +97,15 @@ async function register(user) {
 
 
 async function update(id, user) {
+
+  const emailCheck = await db.query(
+    `SELECT user_id FROM app_users WHERE user_email = '${user.email}'`
+  );
+
+  if (emailCheck.length > 0) {
+    return { message: 'Email já existe' };
+  }
+
   const result = await db.query(
     `UPDATE app_users 
       SET user_name="${user.name}", user_password=${user.pass}, user_email=${user.mail}, 
@@ -128,10 +137,24 @@ async function remove(id) {
   return { message };
 }
 
+async function getUserByEmail(email) {
+  const result = await db.query(
+    `SELECT user_id, user_name, user_email, user_logo FROM app_users WHERE user_email = ?`, [email]
+  );
+  const data = helper.emptyOrRows(result);
+
+  if (data.length > 0) {
+    return data[0];
+  } else {
+    return null;
+  }
+}
+
 module.exports = {
   getUsers,
   login,
   register,
   update,
-  remove
+  remove,
+  getUserByEmail
 }

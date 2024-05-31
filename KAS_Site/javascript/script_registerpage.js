@@ -2,6 +2,7 @@ $(document).ready(function () {
     var alertuser = $('#alertuser');
     var alertpass = $('#alertpass');
     var alertemail = $('#alertemail');
+    var alertcheck =$('#alertcheck');
 
 
 
@@ -10,6 +11,7 @@ $(document).ready(function () {
         var name = document.getElementById("name").value;
         var pass = document.getElementById("pass").value;
         var email = document.getElementById("email").value;
+        var terms = document.getElementById("terms").checked;
 
         if (name == "") {
             alertuser.css("display", "inline");
@@ -31,10 +33,15 @@ $(document).ready(function () {
         else {
             alertemail.css("display", "none");
         }
+        if (!terms) {
+          alertcheck.css("display", "inline");
+      } else {
+          alertcheck.css("display", "none");
+      }
 
 
 
-        if ((name != "" && pass != "")) {
+        if ((name != "" && pass != "" && email !="" && terms)) {
             $.ajax({
                 url: 'http://localhost:3000/users',
                 type: 'POST',

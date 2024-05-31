@@ -2,50 +2,54 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="/css/style.css">
-	<link rel="icon" type="image/png" href="Kas_logo_icon.png">
-	<script src="http://code.jquery.com/jquery-3.6.0.js"></script>
-
-	<title>perfil_kas</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" type="image/png" href="Kas_logo_icon.png">
+    <script src="http://code.jquery.com/jquery-3.6.0.js"></script>
+    <title>perfil_kas</title>
 </head>
 
 <body>
-	<section>
-		<ul>
-			<li id="paginaInicial"><a href="index.html"><img src="KAS_logo_1.png" alt="logo" width="50px"
-						height="50%"></a></li>
-			<li id="statsdeStats"><a href="estatistica.html">Mapas</a></li>
-			<li id="statsDeStocks"><a href="stocks.html">Stocks</a></li>
-			<li id="statsdeGraphs"><a href="grafica.html">Gráficos</a></li>
-			<li class="dropdown">
-				<a id="login" href="perfil.html" class="dropbtn">Perfil</a>
-				<div class="dropdown-content">
-					<a id="exit">Logout</a>
-				</div>
-			</li>
-			<li id="sobrenos"><a href="about.html">Sobre nós</a></li>
-		</ul>
-	</section>
+    <section>
+        <ul>
+            <li id="paginaInicial"><a href="index.html"><img src="KAS_logo_1.png" alt="logo" width="50px" height="50%"></a></li>
+            <li id="statsdeStats"><a href="estatistica.html">Mapas</a></li>
+            <li id="statsDeStocks"><a href="stocks.html">Stocks</a></li>
+            <li id="statsdeGraphs"><a href="grafica.html">Gráficos</a></li>
+            <li class="dropdown">
+                <a id="login" href="perfil.html" class="dropbtn">Perfil</a>
+                <div class="dropdown-content">
+                    <a id="exit">Logout</a>
+                </div>
+            </li>
+            <li id="sobrenos"><a href="about.html">Sobre nós</a></li>
+        </ul>
+    </section>
 
-	<center>
-		<h1>Perfil</h1>
-	</center>
+    <center>
+        <h1>Perfil</h1>
+    </center>
 
-	<div class="perfilContainer">
-		<img class="profilepiccontainer" src="Amazon-512.png">
-		<div class="infoUser">
-			<p class="pUserInfo">Nome: Amazon</p> 
-			<p class="pUserInfo">Descrição:</p>
-			<p class="pUserInfo">Originally started as an online bookselling company, Amazon has morphed into an internet-based business enterprise that is largely focused on providing e-commerce, cloud computing, digital streaming and artificial intelligence (AI) services.
+    <div class="perfilContainer">
+        <form id="profileForm" enctype="multipart/form-data">
+            <img class="profilepiccontainer" id="profilePic" src="Amazon-512.png">
+            <div class="infoUser">
+                <p class="pUserInfo" id="nome">Nome: <input type="text" id="username" value="Amazon" disabled></p>
+                <p class="pUserInfo" id="email">Email: <input type="text" id="email_txt" value="Amazon employee" disabled></p>
+                <p class="pUserInfo">Empresa: Amazon</p>
+                <p class="pUserInfo">Descrição:</p>
+                <p class="pUserInfo">Originally started as an online bookselling company, Amazon has morphed into an internet-based business enterprise that is largely focused on providing e-commerce, cloud computing, digital streaming and artificial intelligence (AI) services.
+                Following an Amazon-to-buyer sales approach, the company offers a monumental product range and inventory, enabling consumers to buy just about anything, including clothing, beauty supplies, gourmet food, jewelry, books, movies, electronics, pet supplies, furniture, toys, garden supplies and household goods.</p>
+                <button type="button" id="editBtn">Editar</button>
+                <button type="button" id="saveBtn" style="display:none;">Salvar</button>
 
-				Following an Amazon-to-buyer sales approach, the company offers a monumental product range and inventory, enabling consumers to buy just about anything, including clothing, beauty supplies, gourmet food, jewelry, books, movies, electronics, pet supplies, furniture, toys, garden supplies and household goods.</p>
-		</div>
+            </div>
+        </form>
+    </div>
 
-	</div>
+    <script src="/javascript/cookies.js"></script>
+    <script src="/javascript/profile.js"></script>
 </body>
-<script src="/javascript/scripts_allpages.js"></script>
-<script src="/javascript/cookies.js"></script>
 
 </html>

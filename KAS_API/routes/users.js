@@ -35,6 +35,21 @@ router.get('/', async function(req, res, next) {
   }
 });
 
+/* GET USER BY EMAIL. */
+router.get('/email/:email', async function(req, res, next) {
+  try {
+    const user = await users.getUserByEmail(req.params.email);
+    if (user) {
+      res.json({ data: user });
+    } else {
+      res.status(404).json({ message: 'User not found' });
+    }
+  } catch (err) {
+    console.error(`Error while getting user by email`, err.message);
+    next(err);
+  }
+});
+
 /* POST  user */
 router.post('/', async function(req, res, next) {
     try {
@@ -45,6 +60,8 @@ router.post('/', async function(req, res, next) {
     }
   });
 
+
+  
   /* PUT  user */
 router.put('/:id', async function(req, res, next) {
     try {
