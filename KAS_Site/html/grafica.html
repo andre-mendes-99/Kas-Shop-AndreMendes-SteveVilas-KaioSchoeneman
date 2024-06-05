@@ -55,6 +55,7 @@
 
 </body>
 <script src="/javascript/scripts_allpages.js"></script>
+<script src="/javascript/scripts_loggedpages.js"></script>
 <script src="/javascript/cookies.js"></script>
 <script>
 	$(document).ready(function () {
@@ -71,7 +72,6 @@
             }
         });
 
-        // Chamada AJAX para obter o produto mais caro
         $.get("http://localhost:3000/products/costliestprod", function (data) {
             if (data.data.length > 0) {
                 costliestProduct = data.data[0];
@@ -81,7 +81,6 @@
             }
         });
 
-		// Chamada AJAX para obter todos os produtos e calcular a média de preços
 		$.get("http://localhost:3000/products", function (data) {
 			let totalPrices = 0;
 			let productNames = [];
@@ -124,7 +123,6 @@
 		});
 
 		function updateChart(chartType) {
-			// Limpar o gráfico existente
 			$('#myChart').remove();
 			$('.graficos').append('<canvas id="myChart" style="width:100%;max-width:600px"></canvas>');
 

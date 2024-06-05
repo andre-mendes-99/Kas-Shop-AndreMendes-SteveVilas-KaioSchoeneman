@@ -50,27 +50,12 @@
   
 <script src="/javascript/scripts_allpages.js"></script>
 <script src="/javascript/cookies.js"></script>
+<script src="/javascript/scripts_loggedpages.js"></script>
+
 <script>
  $(document).ready(function() {
-    // Chamada AJAX para obter o produto mais barato
-    $.get("http://localhost:3000/products/chepeastprod", function(data) {
-        if (data.data.length > 0) {
-            $('#produtobarato').text("Produto Mais Barato: " + data.data[0].product_name + " - Preço: " + data.data[0].product_price + "€");
-        } else {
-            $('#produtobarato').text("Produto Mais Barato: Nenhum produto encontrado.");
-        }
-    });
+    
 
-    // Chamada AJAX para obter o produto mais caro
-    $.get("http://localhost:3000/products/costliestprod", function(data) {
-        if (data.data.length > 0) {
-            $('#produtocaro').text("Produto Mais Caro: " + data.data[0].product_name + " - Preço: " + data.data[0].product_price + "€");
-        } else {
-            $('#produtocaro').text("Produto Mais Caro: Nenhum produto encontrado.");
-        }
-    });
-
-    // Chamada AJAX para obter todos os produtos e calcular a média de preços
     $.get("http://localhost:3000/products", function(data) {
         let totalPrices = 0;
         let productNames = [];
@@ -83,7 +68,6 @@
             productNames.push(product.product_name);
             productStocks.push(product.product_quantity);
 
-            // Generate random color for each product
             let color = getRandomColor();
             backgroundColors.push(color.background);
             borderColors.push(color.border);
